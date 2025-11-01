@@ -8,9 +8,8 @@ object LottoGenerator {
 	private const val LOTTO_NUMBER_SIZE = 6
 
 	fun getLottoNumber(): Lotto {
-		return Lotto(
-			pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_SIZE)
-			.sorted()
-		)
+		val lottoNumbers = pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_SIZE).sorted()
+
+		return Lotto(lottoNumbers)
 	}
 }
