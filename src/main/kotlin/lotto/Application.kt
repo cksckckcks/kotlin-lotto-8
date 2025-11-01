@@ -2,8 +2,11 @@ package lotto
 
 fun main() {
 	val lottoPurchaseAmount = readAndValidatePurchaseAmount()
-	val lottoWinningNumber = readAndValidateWinningNumbers()
-	val bonusNumber = readAndValidateBonusNumber(lottoWinningNumber)
+
+	val lottoNumbers = getLottoNumbers(lottoPurchaseAmount)
+
+	val winningNumber = readAndValidateWinningNumbers()
+	val bonusNumber = readAndValidateBonusNumber(winningNumber)
 }
 
 fun readAndValidatePurchaseAmount(): Int {
@@ -49,4 +52,10 @@ fun readAndValidateBonusNumber(lottoNumbers: List<Int>): Int {
 			OutputView.printErrorMessage(e.message)
 		}
 	}
+}
+
+fun getLottoNumbers(purchaseAmount: Int): List<Lotto> {
+	val lottoCount = purchaseAmount / 1000
+
+	return List(lottoCount) { LottoGenerator.getLottoNumber() }
 }
