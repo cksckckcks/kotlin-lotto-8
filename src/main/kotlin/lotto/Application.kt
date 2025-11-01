@@ -7,6 +7,11 @@ fun main() {
 
 	val winningNumber = readAndValidateWinningNumbers()
 	val bonusNumber = readAndValidateBonusNumber(winningNumber)
+
+	val winningResults = lottoNumbers.map {
+		it.checkWinningResult(winningNumber, bonusNumber)
+	}
+
 }
 
 fun readAndValidatePurchaseAmount(): Int {
