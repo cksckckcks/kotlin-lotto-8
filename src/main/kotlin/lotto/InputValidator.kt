@@ -1,10 +1,7 @@
 package lotto
 
 object InputValidator {
-	private const val LOTTO_PRICE = 1000
-	private const val LOTTO_MIN_NUMBER = 1
-	private const val LOTTO_MAX_NUMBER = 45
-	private const val LOTTO_WINNING_NUMBER_SIZE = 6
+
 
 
 	fun validatePurchaseAmount(purchaseAmount: Int) {
@@ -13,8 +10,8 @@ object InputValidator {
 	}
 
 	fun validateWinningNumbers(winningNumbers: List<Int>) {
-		require(winningNumbers.size == LOTTO_WINNING_NUMBER_SIZE) { "[ERROR] 로또 당첨번호는 ${LOTTO_WINNING_NUMBER_SIZE}개의 정수여야 합니다." }
-		require(winningNumbers.distinct().size == LOTTO_WINNING_NUMBER_SIZE) { "[ERROR] 로또 당첨번호는 중복되지 않아야 합니다." }
+		require(winningNumbers.size == LOTTO_NUMBER_SIZE) { "[ERROR] 로또 당첨번호는 ${LOTTO_NUMBER_SIZE}개의 정수여야 합니다." }
+		require(winningNumbers.distinct().size == LOTTO_NUMBER_SIZE) { "[ERROR] 로또 당첨번호는 중복되지 않아야 합니다." }
 		winningNumbers.forEach { validateLottoNumberRange(it) }
 	}
 
