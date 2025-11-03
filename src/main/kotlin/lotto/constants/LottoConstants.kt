@@ -1,4 +1,4 @@
-package lotto
+package lotto.constants
 
 const val LOTTO_PRICE = 1000
 const val LOTTO_MIN_NUMBER = 1

@@ -1,5 +1,13 @@
-package lotto
+package lotto.controller
 
+import lotto.constants.LOTTO_PRICE
+import lotto.input.InputParser
+import lotto.input.InputValidator
+import lotto.model.Lotto
+import lotto.model.LottoGenerator
+import lotto.model.LottoRank
+import lotto.view.InputView
+import lotto.view.OutputView
 import java.text.DecimalFormat
 
 object LottoController {

@@ -1,4 +1,6 @@
-package lotto
+package lotto.model
+
+import lotto.constants.*
 
 class Lotto(private val numbers: List<Int>) {
 	init {

@@ -1,4 +1,9 @@
-package lotto
+package lotto.input
+
+import lotto.constants.LOTTO_MAX_NUMBER
+import lotto.constants.LOTTO_MIN_NUMBER
+import lotto.constants.LOTTO_NUMBER_SIZE
+import lotto.constants.LOTTO_PRICE
 
 object InputValidator {
 	fun validatePurchaseAmount(purchaseAmount: Int) {

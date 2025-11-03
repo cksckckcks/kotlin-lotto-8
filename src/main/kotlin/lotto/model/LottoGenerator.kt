@@ -1,6 +1,9 @@
-package lotto
+package lotto.model
 
 import camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange
+import lotto.constants.LOTTO_MAX_NUMBER
+import lotto.constants.LOTTO_MIN_NUMBER
+import lotto.constants.LOTTO_NUMBER_SIZE
 
 object LottoGenerator {
 	fun getLottoNumber(): Lotto {

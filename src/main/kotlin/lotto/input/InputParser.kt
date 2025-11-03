@@ -1,4 +1,4 @@
-package lotto
+package lotto.input
 
 object InputParser {
 	private const val DELIMITER = ','
