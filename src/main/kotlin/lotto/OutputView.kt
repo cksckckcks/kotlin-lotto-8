@@ -18,7 +18,12 @@ object OutputView {
 	}
 
 	fun printWinningDetail(rank: LottoRank, count: Int, winningAmount: String) {
-		println("${rank.count}개 일치 (${winningAmount}원) - ${count}개")
+		val message = when(rank) {
+			LottoRank.SECOND -> "${rank.count}개 일치, 보너스 볼 일치"
+			else -> "${rank.count}개 일치"
+		}
+
+		println("$message (${winningAmount}원) - ${count}개")
 	}
 
 	fun printReturnRate(returnRate: String) {
