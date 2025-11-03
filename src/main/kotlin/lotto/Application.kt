@@ -15,7 +15,7 @@ fun main() {
 	val winningNumber = readAndValidateWinningNumbers()
 	val bonusNumber = readAndValidateBonusNumber(winningNumber)
 
-	val winningResults = LottoRank.values()
+	val winningResults = LottoRank.entries
 		.filter { it != LottoRank.NONE }
 		.sortedDescending()
 		.associateWith { rank ->
