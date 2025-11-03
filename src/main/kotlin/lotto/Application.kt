@@ -1,5 +1,7 @@
 package lotto
 
+import java.text.DecimalFormat
+
 fun main() {
 	val lottoPurchaseAmount = readAndValidatePurchaseAmount()
 
@@ -13,10 +15,15 @@ fun main() {
 	val winningNumber = readAndValidateWinningNumbers()
 	val bonusNumber = readAndValidateBonusNumber(winningNumber)
 
-	val winningResults = lottoNumbers.map {
-		it.checkWinningResult(winningNumber, bonusNumber)
-	}
+	val winningResults = LottoRank.values()
+		.filter { it != LottoRank.NONE }
+		.sortedDescending()
+		.associateWith { rank ->
+			lottoNumbers.count { it.checkWinningResult(winningNumber, bonusNumber) == rank}
+		}
 
+
+	printWinningResults(winningResults)
 }
 
 fun readAndValidatePurchaseAmount(): Int {
@@ -68,4 +75,19 @@ fun getLottoNumbers(purchaseAmount: Int): List<Lotto> {
 	val lottoCount = purchaseAmount / 1000
 
 	return List(lottoCount) { LottoGenerator.getLottoNumber() }
+}
+
+fun printWinningResults(winningResults: Map<LottoRank, Int>) {
+	OutputView.printWinningTitle()
+
+	winningResults.forEach {
+		val (rank, count) = it
+		val winningAmount = formatWithComma(rank.winningAmount)
+
+		OutputView.printWinningDetail(rank, count, winningAmount)
+	}
+}
+
+fun formatWithComma(amount: Int): String {
+	return DecimalFormat("#,###").format(amount)
 }
