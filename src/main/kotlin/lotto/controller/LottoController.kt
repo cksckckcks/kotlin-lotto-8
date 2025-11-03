@@ -84,8 +84,12 @@ object LottoController {
 		winningResults.forEach {
 			val (rank, count) = it
 			val winningAmount = formatWithComma(rank.winningAmount)
+			val message = when(rank) {
+				LottoRank.SECOND -> "${rank.count}개 일치, 보너스 볼 일치"
+				else -> "${rank.count}개 일치"
+			}
 
-			OutputView.printWinningDetail(rank, count, winningAmount)
+			OutputView.printWinningDetail(message, count, winningAmount)
 		}
 	}
 

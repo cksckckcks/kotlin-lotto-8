@@ -1,7 +1,5 @@
 package lotto.view
 
-import lotto.model.LottoRank
-
 object OutputView {
 	fun printErrorMessage(message: String?) {
 		println(message)
@@ -19,12 +17,7 @@ object OutputView {
 		println("당첨 통계\n---")
 	}
 
-	fun printWinningDetail(rank: LottoRank, count: Int, winningAmount: String) {
-		val message = when(rank) {
-			LottoRank.SECOND -> "${rank.count}개 일치, 보너스 볼 일치"
-			else -> "${rank.count}개 일치"
-		}
-
+	fun printWinningDetail(message: String, count: Int, winningAmount: String) {
 		println("$message (${winningAmount}원) - ${count}개")
 	}
 
