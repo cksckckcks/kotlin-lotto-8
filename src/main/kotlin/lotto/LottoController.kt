@@ -65,7 +65,7 @@ object LottoController {
 	}
 
 	private fun getLottoNumbers(purchaseAmount: Int): List<Lotto> {
-		val lottoCount = purchaseAmount / 1000
+		val lottoCount = purchaseAmount / LOTTO_PRICE
 
 		return List(lottoCount) { LottoGenerator.getLottoNumber() }
 	}
