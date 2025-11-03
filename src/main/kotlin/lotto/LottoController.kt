@@ -109,7 +109,7 @@ object LottoController {
 	}
 
 	private fun formatReturnRate(purchaseAmount: Int, winningAmount: Long): String {
-		val returnRate = (winningAmount - purchaseAmount).toDouble() / purchaseAmount * 100
+		val returnRate = winningAmount.toDouble() / purchaseAmount * 100
 
 		return DecimalFormat("#,##0.0").format(returnRate)
 	}
