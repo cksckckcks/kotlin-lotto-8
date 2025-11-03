@@ -1,12 +1,9 @@
 package lotto
 
 object InputValidator {
-
-
-
 	fun validatePurchaseAmount(purchaseAmount: Int) {
-		require(purchaseAmount >= LOTTO_PRICE) { "[ERROR] 최소 로또 구매금액은 ${LOTTO_PRICE}원 입니다."}
-		require(purchaseAmount % LOTTO_PRICE == 0) { "[ERROR] 로또 구매금액은 ${LOTTO_PRICE}원 단위여야 합니다."}
+		require(purchaseAmount >= LOTTO_PRICE) { "[ERROR] 최소 로또 구매금액은 ${LOTTO_PRICE}원 입니다." }
+		require(purchaseAmount % LOTTO_PRICE == 0) { "[ERROR] 로또 구매금액은 ${LOTTO_PRICE}원 단위여야 합니다." }
 	}
 
 	fun validateWinningNumbers(winningNumbers: List<Int>) {
@@ -23,5 +20,4 @@ object InputValidator {
 	private fun validateLottoNumberRange(number: Int) {
 		require(number in LOTTO_MIN_NUMBER..LOTTO_MAX_NUMBER) { "[ERROR] 로또 당첨번호는 ${LOTTO_MIN_NUMBER}에서 ${LOTTO_MAX_NUMBER}사이의 정수여야 합니다." }
 	}
-
 }

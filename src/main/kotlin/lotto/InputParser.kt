@@ -15,7 +15,7 @@ object InputParser {
 		}
 	}
 
-	fun parseLottoBonusNumber(input: String): Int{
+	fun parseLottoBonusNumber(input: String): Int {
 		return input.toIntOrNull() ?: throw IllegalArgumentException("[ERROR] 로또 보너스 번호는 숫자여야 합니다.")
 	}
 }

@@ -89,7 +89,7 @@ fun getWinningResult(
 		.filter { it != LottoRank.NONE }
 		.sortedDescending()
 		.associateWith { rank ->
-			lottoNumbers.count { it.checkWinningResult(winningNumber, bonusNumber) == rank}
+			lottoNumbers.count { it.checkWinningResult(winningNumber, bonusNumber) == rank }
 		}
 }
 
