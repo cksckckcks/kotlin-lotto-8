@@ -5,6 +5,11 @@ fun main() {
 
 	val lottoNumbers = getLottoNumbers(lottoPurchaseAmount)
 
+	OutputView.printLottoPurchase(lottoNumbers.size)
+	lottoNumbers.forEach {
+		OutputView.printLottoNumbers(it.getNumbers())
+	}
+
 	val winningNumber = readAndValidateWinningNumbers()
 	val bonusNumber = readAndValidateBonusNumber(winningNumber)
 
