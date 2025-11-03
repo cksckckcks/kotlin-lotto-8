@@ -1,7 +1,5 @@
 package lotto
 
-import java.text.DecimalFormat
-
 object OutputView {
 	fun printErrorMessage(message: String?) {
 		println(message)
