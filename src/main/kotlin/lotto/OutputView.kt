@@ -20,4 +20,8 @@ object OutputView {
 	fun printWinningDetail(rank: LottoRank, count: Int, winningAmount: String) {
 		println("${rank.count}개 일치 (${winningAmount}원) - ${count}개")
 	}
+
+	fun printReturnRate(returnRate: String) {
+		println("총 수익률은 ${returnRate}%입니다.")
+	}
 }

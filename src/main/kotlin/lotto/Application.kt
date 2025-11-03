@@ -4,26 +4,18 @@ import java.text.DecimalFormat
 
 fun main() {
 	val lottoPurchaseAmount = readAndValidatePurchaseAmount()
-
 	val lottoNumbers = getLottoNumbers(lottoPurchaseAmount)
-
-	OutputView.printLottoPurchase(lottoNumbers.size)
-	lottoNumbers.forEach {
-		OutputView.printLottoNumbers(it.getNumbers())
-	}
+	printLottoNumbers(lottoNumbers)
 
 	val winningNumber = readAndValidateWinningNumbers()
 	val bonusNumber = readAndValidateBonusNumber(winningNumber)
 
-	val winningResults = LottoRank.entries
-		.filter { it != LottoRank.NONE }
-		.sortedDescending()
-		.associateWith { rank ->
-			lottoNumbers.count { it.checkWinningResult(winningNumber, bonusNumber) == rank}
-		}
-
-
+	val winningResults = getWinningResult(lottoNumbers, winningNumber, bonusNumber)
 	printWinningResults(winningResults)
+
+	val winningAmount = getWinningAmount(winningResults)
+	val returnRate = formatReturnRate(lottoPurchaseAmount, winningAmount)
+	OutputView.printReturnRate(returnRate)
 }
 
 fun readAndValidatePurchaseAmount(): Int {
@@ -88,6 +80,40 @@ fun printWinningResults(winningResults: Map<LottoRank, Int>) {
 	}
 }
 
+fun getWinningResult(
+	lottoNumbers: List<Lotto>,
+	winningNumber: List<Int>,
+	bonusNumber: Int
+): Map<LottoRank, Int> {
+	return LottoRank.entries
+		.filter { it != LottoRank.NONE }
+		.sortedDescending()
+		.associateWith { rank ->
+			lottoNumbers.count { it.checkWinningResult(winningNumber, bonusNumber) == rank}
+		}
+}
+
 fun formatWithComma(amount: Int): String {
 	return DecimalFormat("#,###").format(amount)
+}
+
+fun getWinningAmount(winningResults: Map<LottoRank, Int>): Long {
+	var winningAmount = 0L
+
+	winningResults.forEach { (rank, count) ->
+		winningAmount += rank.winningAmount * count
+	}
+
+	return winningAmount
+}
+
+fun formatReturnRate(purchaseAmount: Int, winningAmount: Long): String {
+	val returnRate = (winningAmount - purchaseAmount).toDouble() / purchaseAmount * 100
+
+	return DecimalFormat("#,##0.0").format(returnRate)
+}
+
+fun printLottoNumbers(lottoNumbers: List<Lotto>) {
+	OutputView.printLottoPurchase(lottoNumbers.size)
+	lottoNumbers.forEach { OutputView.printLottoNumbers(it.getNumbers()) }
 }
