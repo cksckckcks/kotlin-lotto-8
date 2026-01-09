@@ -22,4 +22,12 @@ object InputParser {
 
 		return winningNumbers
 	}
+
+	fun parseBonusNumber(input: String): Int {
+		val bonusNumber = input.toIntOrNull()
+
+		requireNotNull(bonusNumber) { "올바른 보너스 번호를 입력해주세요." }
+
+		return bonusNumber
+	}
 }

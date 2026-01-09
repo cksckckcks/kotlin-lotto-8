@@ -16,4 +16,9 @@ object InputValidator {
 		require(winningNumbers.all { it in LOTTO_MIN_NUMBER..LOTTO_MAX_NUMBER}) { "로또 번호는 1부터 45 사이의 숫자여야 합니다." }
 		require(winningNumbers.toSet().size == winningNumbers.size) { "로또 당첨 번호 내에 중복된 숫자가 있을 수 없습니다." }
 	}
+
+	fun validateBonusNumber(winningNumbers: List<Int>, bonusNumber: Int) {
+		require(bonusNumber in LOTTO_MIN_NUMBER..LOTTO_MAX_NUMBER) { "보너스 번호는 1부터 45 사이의 숫자여야 합니다." }
+		require(bonusNumber !in winningNumbers) { "보너스 번호는 로또 번호 내에 중복된 숫자가 있을 수 없습니다." }
+	}
 }
