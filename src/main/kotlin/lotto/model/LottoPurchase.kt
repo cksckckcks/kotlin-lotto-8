@@ -2,7 +2,7 @@ package lotto.model
 
 import lotto.Lotto
 
-class BuyLotto(
+class LottoPurchase(
 	buyCount: Int,
 	private val lottos: MutableList<Lotto> = mutableListOf()
 ) {

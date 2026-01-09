@@ -1,7 +1,7 @@
 package lotto.controller
 
 import lotto.constants.LOTTO_PRICE
-import lotto.model.BuyLotto
+import lotto.model.LottoPurchase
 import lotto.model.LottoResult
 import lotto.model.LottoWinningChecker
 import lotto.util.InputParser
@@ -26,8 +26,8 @@ class LottoController {
 		OutputView.printLottoResult(lottoResult)
 	}
 
-	private fun createLottoResult(amount: Int, buyLotto: BuyLotto, lottoWinningChecker: LottoWinningChecker): LottoResult {
-		val ranks = buyLotto.getLottos().map { lottoWinningChecker.getWinningResult(it.getNumbers()) }
+	private fun createLottoResult(amount: Int, lottoPurchase: LottoPurchase, lottoWinningChecker: LottoWinningChecker): LottoResult {
+		val ranks = lottoPurchase.getLottos().map { lottoWinningChecker.getWinningResult(it.getNumbers()) }
 
 		return LottoResult(amount, ranks)
 	}
@@ -35,8 +35,8 @@ class LottoController {
 		return LottoWinningChecker(winningNumbers, bonusNumber)
 	}
 
-	private fun printLottos(buyLotto: BuyLotto) {
-		val lottos = buyLotto.getLottos()
+	private fun printLottos(lottoPurchase: LottoPurchase) {
+		val lottos = lottoPurchase.getLottos()
 
 		OutputView.printBuyCount(lottos.size)
 
@@ -75,8 +75,8 @@ class LottoController {
 		}
 	}
 
-	private fun getBuyLotto(amount: Int): BuyLotto {
-		return BuyLotto(amount / LOTTO_PRICE)
+	private fun getBuyLotto(amount: Int): LottoPurchase {
+		return LottoPurchase(amount / LOTTO_PRICE)
 	}
 
 	private fun <T> readInfinity(action: () -> T): T {
