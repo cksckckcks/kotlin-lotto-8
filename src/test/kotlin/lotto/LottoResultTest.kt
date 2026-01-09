@@ -35,5 +35,4 @@ class LottoResultTest {
 
 		assertThat(lottoResult.getWinningRateOfReturn()).isEqualTo(rateOfReturn)
 	}
-
 }
