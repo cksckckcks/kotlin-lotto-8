@@ -1,5 +1,6 @@
 package lotto.controller
 
+import lotto.model.BuyLotto
 import lotto.util.InputParser
 import lotto.util.InputValidator
 import lotto.view.InputView
@@ -8,8 +9,22 @@ import lotto.view.OutputView
 class LottoController {
 	fun run() {
 		val amount = readAmount()
+		val buyLotto = getBuyLotto(amount)
+
+		printLottos(buyLotto)
+
 		val winningNumbers = readWinningNumbers()
 		val bonusNumber = readBonusNumber(winningNumbers)
+	}
+
+	private fun printLottos(buyLotto: BuyLotto) {
+		val lottos = buyLotto.getLottos()
+
+		OutputView.printBuyCount(lottos.size)
+
+		lottos.forEach {
+			OutputView.printLottoNumber(it.getNumbers().joinToString(", "))
+		}
 	}
 
 	private fun readAmount(): Int {
@@ -50,5 +65,9 @@ class LottoController {
 				OutputView.printErrorMessage(e.message)
 			}
 		}
+	}
+
+	private fun getBuyLotto(amount: Int): BuyLotto {
+		return BuyLotto(amount)
 	}
 }

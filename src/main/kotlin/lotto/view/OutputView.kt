@@ -7,4 +7,16 @@ object OutputView {
 	fun printErrorMessage(message: String?) {
 		println("$ERROR_HEADER ${message ?: UNKNOWN_ERROR}")
 	}
+
+	fun printLottoNumber(numbers: String) {
+		println("[${numbers}]")
+	}
+
+	fun printNewLine() {
+		println()
+	}
+
+	fun printBuyCount(buyCount: Int) {
+		println("${buyCount}개를 구매했습니다.")
+	}
 }
