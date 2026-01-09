@@ -14,8 +14,9 @@ class LottoWinningCheckerTest {
 		val winningChecker = LottoWinningChecker(winningNumbers, bonusNumber)
 
 		val myNumbers = listOf(1, 2, 3, 4, 5, 6)
+		val lotto = Lotto(myNumbers)
 
-		assertThat(winningChecker.getWinningResult(myNumbers)).isEqualTo(LottoRank.FIRST)
+		assertThat(winningChecker.getWinningResult(lotto)).isEqualTo(LottoRank.FIRST)
 	}
 
 	@Test
@@ -26,7 +27,8 @@ class LottoWinningCheckerTest {
 		val winningChecker = LottoWinningChecker(winningNumbers, bonusNumber)
 
 		val myNumbers = listOf(1, 2, 3, 4, 5, 7)
+		val lotto = Lotto(myNumbers)
 
-		assertThat(winningChecker.getWinningResult(myNumbers)).isEqualTo(LottoRank.SECOND)
+		assertThat(winningChecker.getWinningResult(lotto)).isEqualTo(LottoRank.SECOND)
 	}
 }
