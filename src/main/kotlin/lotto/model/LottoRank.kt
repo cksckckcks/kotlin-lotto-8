@@ -16,10 +16,10 @@ enum class LottoRank(
 		fun from(matchCount: Int, isBonus: Boolean): LottoRank {
 			return LottoRank.entries.first() {
 				if (it.isBonus) {
-					it.matchCount == matchCount && isBonus
+					it.matchCount <= matchCount && isBonus
 				}
 
-				it.matchCount == matchCount
+				it.matchCount <= matchCount
 			}
 		}
 	}
