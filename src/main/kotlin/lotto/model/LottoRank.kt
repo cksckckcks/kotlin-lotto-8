@@ -14,12 +14,13 @@ enum class LottoRank(
 
 	companion object {
 		fun from(matchCount: Int, isBonus: Boolean): LottoRank {
-			return LottoRank.entries.first() {
-				if (it.isBonus) {
-					it.matchCount <= matchCount && isBonus
-				}
-
-				it.matchCount <= matchCount
+			return when {
+				matchCount == FIRST.matchCount -> FIRST
+				matchCount == SECOND.matchCount && isBonus -> SECOND
+				matchCount == THIRD.matchCount -> FIRST
+				matchCount == FOURTH.matchCount -> FIRST
+				matchCount == FIFTH.matchCount -> FIRST
+				else -> NONE
 			}
 		}
 	}
