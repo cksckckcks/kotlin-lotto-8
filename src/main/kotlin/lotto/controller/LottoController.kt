@@ -7,6 +7,7 @@ import lotto.view.InputView
 class LottoController {
 	fun run() {
 		val amount = readAmount()
+		val winningNumbers = readWinningNumbers()
 	}
 
 	private fun readAmount(): Int {
@@ -15,5 +16,13 @@ class LottoController {
 		InputValidator.validateAmount(amount)
 
 		return amount
+	}
+
+	private fun readWinningNumbers(): List<Int> {
+		val input = InputView.readWinningNumbers()
+		val winningNumbers = InputParser.parseWinningNumbers(input)
+		InputValidator.validateWinningNumbers(winningNumbers)
+
+		return winningNumbers
 	}
 }
