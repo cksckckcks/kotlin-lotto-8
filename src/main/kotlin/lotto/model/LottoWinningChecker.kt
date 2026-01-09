@@ -6,7 +6,7 @@ class LottoWinningChecker(
 ) {
 	fun getWinningResult(lottoNumbers: List<Int>): LottoRank {
 		val matchCount = lottoNumbers.count { it in winningNumbers }
-		val isBonus = bonusNumber in winningNumbers
+		val isBonus = bonusNumber in lottoNumbers
 
 		return LottoRank.from(matchCount, isBonus)
 	}
