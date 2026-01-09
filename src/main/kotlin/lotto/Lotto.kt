@@ -10,5 +10,13 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.all { it in LOTTO_MIN_NUMBER..LOTTO_MAX_NUMBER}) { "[ERROR] 로또 번호는 $LOTTO_MIN_NUMBER ~ $LOTTO_MAX_NUMBER 사이여야 합니다." }
     }
 
-    fun getNumbers() = numbers
+    fun getNumbersString(): String {
+        return numbers.joinToString(", ")
+    }
+
+    fun getMatchCount(winningNumber: List<Int>): Int {
+        return numbers.count { it in winningNumber }
+    }
+
+    fun contains(number: Int): Boolean = numbers.contains(number)
 }

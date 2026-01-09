@@ -27,7 +27,7 @@ class LottoController {
 	}
 
 	private fun createLottoResult(amount: Int, lottoPurchase: LottoPurchase, lottoWinningChecker: LottoWinningChecker): LottoResult {
-		val ranks = lottoPurchase.getLottos().map { lottoWinningChecker.getWinningResult(it.getNumbers()) }
+		val ranks = lottoPurchase.getLottos().map { lottoWinningChecker.getWinningResult(it) }
 
 		return LottoResult(amount, ranks)
 	}
@@ -41,7 +41,7 @@ class LottoController {
 		OutputView.printBuyCount(lottos.size)
 
 		lottos.forEach {
-			OutputView.printLottoNumber(it.getNumbers().joinToString(", "))
+			OutputView.printLottoNumber(it.getNumbersString())
 		}
 	}
 

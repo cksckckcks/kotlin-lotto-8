@@ -1,12 +1,14 @@
 package lotto.model
 
+import lotto.Lotto
+
 class LottoWinningChecker(
 	private val winningNumbers: List<Int>,
 	private val bonusNumber: Int
 ) {
-	fun getWinningResult(lottoNumbers: List<Int>): LottoRank {
-		val matchCount = lottoNumbers.count { it in winningNumbers }
-		val isBonus = bonusNumber in lottoNumbers
+	fun getWinningResult(lotto: Lotto): LottoRank {
+		val matchCount = lotto.getMatchCount(winningNumbers)
+		val isBonus = lotto.contains(bonusNumber)
 
 		return LottoRank.from(matchCount, isBonus)
 	}
