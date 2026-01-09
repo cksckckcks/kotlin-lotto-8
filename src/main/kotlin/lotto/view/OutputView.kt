@@ -2,6 +2,7 @@ package lotto.view
 
 import lotto.model.LottoResult
 import lotto.util.toComma
+import lotto.util.toRate
 
 object OutputView {
 	private const val ERROR_HEADER = "[ERROR]"
@@ -25,6 +26,7 @@ object OutputView {
 
 	fun printLottoResult(lottoResult: LottoResult) {
 		val result = lottoResult.getResult()
+		val rateOfReturn = lottoResult.getWinningRateOfReturn().toRate()
 
 		println("당첨 통계\n---")
 		result.forEach {
@@ -33,5 +35,6 @@ object OutputView {
 
 			println("${rank.matchCount}개 일치$bonusText (${rank.winningAmount.toComma()}원) - ${count}개")
 		}
+		println("총 수익률은 ${rateOfReturn}%입니다.")
 	}
 }

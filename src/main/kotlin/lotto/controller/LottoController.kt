@@ -20,15 +20,15 @@ class LottoController {
 
 		val lottoWinningChecker = getLottoWinningChecker(winningNumbers, bonusNumber)
 
-		val lottoResult = createLottoResult(buyLotto, lottoWinningChecker)
+		val lottoResult = createLottoResult(amount, buyLotto, lottoWinningChecker)
 
 		OutputView.printLottoResult(lottoResult)
 	}
 
-	private fun createLottoResult(buyLotto: BuyLotto, lottoWinningChecker: LottoWinningChecker): LottoResult {
+	private fun createLottoResult(amount: Int, buyLotto: BuyLotto, lottoWinningChecker: LottoWinningChecker): LottoResult {
 		val ranks = buyLotto.getLottos().map { lottoWinningChecker.getWinningResult(it.getNumbers()) }
 
-		return LottoResult(ranks)
+		return LottoResult(amount, ranks)
 	}
 	private fun getLottoWinningChecker(winningNumbers: List<Int>, bonusNumber: Int): LottoWinningChecker {
 		return LottoWinningChecker(winningNumbers, bonusNumber)
