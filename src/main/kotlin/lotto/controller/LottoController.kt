@@ -3,6 +3,7 @@ package lotto.controller
 import lotto.util.InputParser
 import lotto.util.InputValidator
 import lotto.view.InputView
+import lotto.view.OutputView
 
 class LottoController {
 	fun run() {
@@ -12,26 +13,42 @@ class LottoController {
 	}
 
 	private fun readAmount(): Int {
-		val input = InputView.readAmount()
-		val amount = InputParser.parseAmount(input)
-		InputValidator.validateAmount(amount)
+		return readInfinity {
+			val input = InputView.readAmount()
+			val amount = InputParser.parseAmount(input)
+			InputValidator.validateAmount(amount)
 
-		return amount
+			amount
+		}
 	}
 
 	private fun readWinningNumbers(): List<Int> {
-		val input = InputView.readWinningNumbers()
-		val winningNumbers = InputParser.parseWinningNumbers(input)
-		InputValidator.validateWinningNumbers(winningNumbers)
+		return readInfinity {
+			val input = InputView.readWinningNumbers()
+			val winningNumbers = InputParser.parseWinningNumbers(input)
+			InputValidator.validateWinningNumbers(winningNumbers)
 
-		return winningNumbers
+			winningNumbers
+		}
 	}
 
 	private fun readBonusNumber(winningNumber: List<Int>): Int {
-		val input = InputView.readBonusNumber()
-		val bonusNumber = InputParser.parseBonusNumber(input)
-		InputValidator.validateBonusNumber(winningNumber, bonusNumber)
+		return readInfinity {
+			val input = InputView.readBonusNumber()
+			val bonusNumber = InputParser.parseBonusNumber(input)
+			InputValidator.validateBonusNumber(winningNumber, bonusNumber)
 
-		return bonusNumber
+			bonusNumber
+		}
+	}
+
+	private fun <T> readInfinity(action: () -> T): T {
+		while (true) {
+			try {
+				return action()
+			} catch (e: IllegalArgumentException) {
+				OutputView.printErrorMessage(e.message)
+			}
+		}
 	}
 }
