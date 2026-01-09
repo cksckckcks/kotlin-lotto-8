@@ -17,9 +17,9 @@ enum class LottoRank(
 			return when {
 				matchCount == FIRST.matchCount -> FIRST
 				matchCount == SECOND.matchCount && isBonus -> SECOND
-				matchCount == THIRD.matchCount -> FIRST
-				matchCount == FOURTH.matchCount -> FIRST
-				matchCount == FIFTH.matchCount -> FIRST
+				matchCount == THIRD.matchCount -> THIRD
+				matchCount == FOURTH.matchCount -> FOURTH
+				matchCount == FIFTH.matchCount -> FIFTH
 				else -> NONE
 			}
 		}
