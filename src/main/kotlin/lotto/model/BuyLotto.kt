@@ -4,7 +4,7 @@ import lotto.Lotto
 import lotto.constants.LOTTO_PRICE
 
 class BuyLotto(
-	private val amount: Int,
+	amount: Int,
 	private val lottos: MutableList<Lotto> = mutableListOf()
 ) {
 	init {

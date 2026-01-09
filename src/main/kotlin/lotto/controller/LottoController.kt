@@ -1,6 +1,8 @@
 package lotto.controller
 
 import lotto.model.BuyLotto
+import lotto.model.LottoResult
+import lotto.model.LottoWinningChecker
 import lotto.util.InputParser
 import lotto.util.InputValidator
 import lotto.view.InputView
@@ -15,6 +17,21 @@ class LottoController {
 
 		val winningNumbers = readWinningNumbers()
 		val bonusNumber = readBonusNumber(winningNumbers)
+
+		val lottoWinningChecker = getLottoWinningChecker(winningNumbers, bonusNumber)
+
+		val lottoResult = createLottoResult(buyLotto, lottoWinningChecker)
+
+		OutputView.printLottoResult(lottoResult)
+	}
+
+	private fun createLottoResult(buyLotto: BuyLotto, lottoWinningChecker: LottoWinningChecker): LottoResult {
+		val ranks = buyLotto.getLottos().map { lottoWinningChecker.getWinningResult(it.getNumbers()) }
+
+		return LottoResult(ranks)
+	}
+	private fun getLottoWinningChecker(winningNumbers: List<Int>, bonusNumber: Int): LottoWinningChecker {
+		return LottoWinningChecker(winningNumbers, bonusNumber)
 	}
 
 	private fun printLottos(buyLotto: BuyLotto) {
