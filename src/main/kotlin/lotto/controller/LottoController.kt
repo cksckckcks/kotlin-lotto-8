@@ -1,5 +1,6 @@
 package lotto.controller
 
+import lotto.constants.LOTTO_PRICE
 import lotto.model.BuyLotto
 import lotto.model.LottoResult
 import lotto.model.LottoWinningChecker
@@ -74,6 +75,10 @@ class LottoController {
 		}
 	}
 
+	private fun getBuyLotto(amount: Int): BuyLotto {
+		return BuyLotto(amount / LOTTO_PRICE)
+	}
+
 	private fun <T> readInfinity(action: () -> T): T {
 		while (true) {
 			try {
@@ -82,9 +87,5 @@ class LottoController {
 				OutputView.printErrorMessage(e.message)
 			}
 		}
-	}
-
-	private fun getBuyLotto(amount: Int): BuyLotto {
-		return BuyLotto(amount)
 	}
 }

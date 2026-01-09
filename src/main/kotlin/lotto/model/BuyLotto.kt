@@ -1,15 +1,13 @@
 package lotto.model
 
 import lotto.Lotto
-import lotto.constants.LOTTO_PRICE
 
 class BuyLotto(
-	amount: Int,
+	buyCount: Int,
 	private val lottos: MutableList<Lotto> = mutableListOf()
 ) {
 	init {
-		val lottoBuyCount = amount / LOTTO_PRICE
-		repeat(lottoBuyCount) {
+		repeat(buyCount) {
 			val lotto = LottoGenerator.getLotto()
 
 			lottos.add(lotto)
